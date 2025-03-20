@@ -1,47 +1,36 @@
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project]
+name = "simple-zstd"
+version = "0.1.0"
+authors = [
+    {name = "Chuancong Gao", email = "chuanconggao@users.noreply.github.com"},
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "zstandard>=0.21.0",
+]
 
-[tool.coverage.run]
-source = [
+[dependency-groups]
+dev = [
+    "ipython>=9.0.2",
+    "pytest-cov>=6.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/chuanconggao/SimpleZstd/"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report xml:cov.xml --cov-report html --cov-report term-missing tests"
+pythonpath = [
     "src",
 ]
 
-[tool.mypy]
-ignore_missing_imports = true
-strict = true
-
-[tool.poetry]
-name = "simple-zstd"
-version = "0.1.0"
-description = ""
-authors = ["Chuancong Gao <chuanconggao@users.noreply.github.com>"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-zstandard = "^0.21.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.3"
-pytest-cov = "^4.1.0"
-ipykernel = "^6.26.0"
-mypy = "^1.7.1"
-flake8 = "^6.1.0"
-
-[tool.pylint.format]
-max-line-length = 100
-
-[tool.pylint."messages control"]
-disable = [
-    "C0103",
-    "C0114",
-    "C0115",
-    "C0116",
-]
-
-[tool.pytest.ini_options]
-addopts = "--cov --cov-report xml:cov.xml --cov-report html --cov-report term-missing"
-pythonpath = [
+[tool.coverage.run]
+source = [
     "src",
 ]

@@ -1,5 +1,5 @@
 def test_session():
-    content: bytes = open("poetry.lock").read().encode("utf-8")
+    content: bytes = open("uv.lock").read().encode("utf-8")
 
     from simple_zstd import compress, decompress
 
