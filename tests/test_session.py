@@ -1,7 +1,8 @@
+from simple_zstd import compress, decompress
+
+
 def test_session():
     content: bytes = open("uv.lock").read().encode("utf-8")
-
-    from simple_zstd import compress, decompress
 
     last_compressed_size: int = -1
     for i in range(10):

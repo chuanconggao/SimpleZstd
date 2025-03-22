@@ -1,8 +1,8 @@
 from zstandard import (
-    train_dictionary,
-    ZstdCompressor,
     ZstdCompressionDict,
+    ZstdCompressor,
     ZstdDecompressor,
+    train_dictionary,
 )
 
 # Dict size of 128 KB
@@ -14,7 +14,7 @@ _MIN_SAMPLE_SIZE: int = 10
 
 
 class Session:
-    def __init__(self):
+    def __init__(self) -> None:
         self.__samples: list[bytes] = []
         self.__dict: ZstdCompressionDict | None = None
 
