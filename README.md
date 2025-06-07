@@ -1,7 +1,7 @@
 # SimpleZstd
 
 This library provides simple Pythonic interface of [`zstd`](https://facebook.github.io/zstd/) algorithm like Python's builtin `gzip` library, by wrapping the [`zstandard`](https://github.com/indygreg/python-zstandard) library.
-
+- Note that it matches the same interface of [builtin `zstd` support](https://docs.python.org/3.14/whatsnew/3.14.html#pep-784-adding-zstandard-to-the-standard-library) in Python 3.14+ standard library.
 Further more, it provides builtin session support to take advantage of `zstd`'s powerful training mode without additional user effort, by auto collecting training samples (10 by default) during compression/decompression.
 
 ``` python
