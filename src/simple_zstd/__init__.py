@@ -60,12 +60,12 @@ class Session:
         return result
 
 
-__DEFAULT_SESSION = Session()
+DEFAULT_SESSION = Session()
 
 
 def compress(data: bytes) -> bytes:
-    return __DEFAULT_SESSION.compress(data)
+    return DEFAULT_SESSION.compress(data)
 
 
 def decompress(data: bytes) -> bytes:
-    return __DEFAULT_SESSION.decompress(data)
+    return DEFAULT_SESSION.decompress(data)
