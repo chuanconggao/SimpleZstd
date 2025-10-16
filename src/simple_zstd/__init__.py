@@ -16,7 +16,7 @@ _MIN_SAMPLE_SIZE: int = 10
 class Session:
     def __init__(self) -> None:
         self.__samples: list[bytes] = []
-        self.__dict: ZstdCompressionDict | None = None
+        self.dict: ZstdCompressionDict | None = None
 
         self.__compressor: ZstdCompressor | None = None
         self.__decompressor: ZstdDecompressor | None = None
@@ -25,7 +25,7 @@ class Session:
         self.__samples.append(data)
 
         if len(self.__samples) >= _MIN_SAMPLE_SIZE:
-            self.__dict = train_dictionary(
+            self.dict = train_dictionary(
                 dict_size=_DICT_SIZE,
                 samples=self.__samples,
                 # Enable all error message details
@@ -36,12 +36,12 @@ class Session:
             self.__decompressor = None
 
     def compress(self, data: bytes) -> bytes:
-        if not self.__dict:
+        if not self.dict:
             self.__train(data)
 
         if not self.__compressor:
             self.__compressor = ZstdCompressor(
-                dict_data=self.__dict,
+                dict_data=self.dict,
             )
 
         return self.__compressor.compress(data)
@@ -49,12 +49,12 @@ class Session:
     def decompress(self, data: bytes) -> bytes:
         if not self.__decompressor:
             self.__decompressor = ZstdDecompressor(
-                dict_data=self.__dict,
+                dict_data=self.dict,
             )
 
         result: bytes = self.__decompressor.decompress(data)
 
-        if not self.__dict:
+        if not self.dict:
             self.__train(result)
 
         return result
