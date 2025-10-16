@@ -45,3 +45,5 @@ In [5]: assert session.decompress(x) == c
 ```
 
 For simpler usage, you can also just import `zstd` instead of `simple_zstd`.
+
+Dictionary is exposed under session object. You need to store it for later decompression by passing when creating session.
