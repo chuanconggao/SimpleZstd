@@ -14,9 +14,9 @@ _MIN_SAMPLE_SIZE: int = 10
 
 
 class Session:
-    def __init__(self) -> None:
+    def __init__(self, _dict: ZstdCompressionDict | None = None) -> None:
         self.__samples: list[bytes] = []
-        self.dict: ZstdCompressionDict | None = None
+        self.dict: ZstdCompressionDict | None = _dict
 
         self.__compressor: ZstdCompressor | None = None
         self.__decompressor: ZstdDecompressor | None = None
